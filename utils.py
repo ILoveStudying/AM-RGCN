@@ -115,6 +115,7 @@ def load_data(OpenDataset, filename, process_method, adj_name, node_length, mult
             num_for_predict,
             num_of_shift))
 
+        # whether existing Dynamic Multi-Component Dataset
         if not os.path.exists(multi_filename):
             print("Generate Dynamic Multi-Component Dataset")
             _ = OpenDataset.PEMS_MultiComponent(filename, num_of_weeks, num_of_days, num_of_hours, num_for_predict,
