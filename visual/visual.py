@@ -116,8 +116,8 @@ def p4_mae():
 
 
 if __name__ == '__main__':
-    # day()
-    # week()
+    day()
+    week()
     p8_rmse()
     p8_mae()
     p4_rmse()
