@@ -17,11 +17,11 @@ The detail setting of our experiment refers our paper.
 
 # Usage
 Edit options in opt.py
- - dataset: str, choose pems04 or pems08
+ - dataset: str, choose *pems04* or *pems08*
  - save_path: str, checkpoint path for model
- - adj: str, adjacency matrix, distance08.csv or distance04.csv
+ - adj: str, adjacency matrix, *distance08.csv* or *distance04.csv*
  - Multidataset: str,  whether existing Multidataset or Slidedataset, create one if not
- - process_method: str, MultiComponent or SlideWindow
+ - process_method: str, *MultiComponent* or *SlideWindow*
  - hdwps: str, hour(h), day(d), week(w), and shift(s) are multiples of prediction(p) length
  - model:  **DMRGCN, Baseline_LSTM, Baseline_GRU, MCSTGCN, ASTGCN, DM_LSTM_GCN**
  
