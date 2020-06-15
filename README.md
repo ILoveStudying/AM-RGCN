@@ -11,9 +11,13 @@ We choose data on the first 50 days as the training set and valid set, and the r
 - PeMSD8 contains two months of statistics on traffic flow, ranging from July 1st 2016 to Aug 31st 2016, including 170 sensors on the highways of San Bernardino. 
 We select data on the first 50 days as the training set and valid set, and the remaining 12 days as the test set. 
 
+# Parameter Setting
+The detail setting of our experiment refers our paper.
+
+
 # Usage
 Edit options in opt.py
- - dataset: str, choose pemsd4 or pemsd8
+ - dataset: str, choose pems04 or pems08
  - save_path: str, checkpoint path for model
  - adj: str, adjacency matrix, distance08.csv or distance04.csv
  - Multidataset: str,  whether existing Multidataset or Slidedataset, create one if not
