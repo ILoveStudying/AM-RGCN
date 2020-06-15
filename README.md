@@ -33,7 +33,7 @@ Edit options in opt.py
  python Multi_test.py
 ```
 
- if model is in (**Baseline_LSTM, Baseline_GRU**)
+ if model is in (**Baseline_LSTM, Baseline_GRU**), the process method is *SlideWindow*
  ```
  python lstm_gru_train.py
  
