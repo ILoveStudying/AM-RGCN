@@ -46,11 +46,11 @@ class GCN_layer(nn.Module):
         :return: (B, N, gcn_F, T)
         '''
 
-        batch_size, node, in_channels, num_of_timesteps = x.shape
+        batch_size, node, in_channels, timesteps = x.shape
 
         gcn_outputs = []
 
-        for time_step in range(num_of_timesteps):
+        for time_step in range(timesteps):
             gcn_1 = self.gc1(x[:, :, :, time_step], adj)  # (B, N, in_F) - (B, N, gcn1_F)
 
             gcn_2 = self.gc2(gcn_1, adj)  # (B, N, gcn1_F) - (B, N, gcn_F)
@@ -61,13 +61,13 @@ class GCN_layer(nn.Module):
 
 
 class Temporal_Attention(nn.Module):
-    def __init__(self, DEVICE, in_channels, num_of_vertices, num_of_timesteps):
+    def __init__(self, DEVICE, in_channels, nodes, timesteps):
         super(Temporal_Attention, self).__init__()
-        self.U1 = nn.Parameter(torch.FloatTensor(num_of_vertices).to(DEVICE))
-        self.U2 = nn.Parameter(torch.FloatTensor(in_channels, num_of_vertices).to(DEVICE))
+        self.U1 = nn.Parameter(torch.FloatTensor(nodes).to(DEVICE))
+        self.U2 = nn.Parameter(torch.FloatTensor(in_channels, nodes).to(DEVICE))
         self.U3 = nn.Parameter(torch.FloatTensor(in_channels).to(DEVICE))
-        self.be = nn.Parameter(torch.FloatTensor(1, num_of_timesteps, num_of_timesteps).to(DEVICE))
-        self.Ve = nn.Parameter(torch.FloatTensor(num_of_timesteps, num_of_timesteps).to(DEVICE))
+        self.be = nn.Parameter(torch.FloatTensor(1, timesteps, timesteps).to(DEVICE))
+        self.Ve = nn.Parameter(torch.FloatTensor(timesteps, timesteps).to(DEVICE))
 
     def forward(self, x):
         '''
@@ -97,13 +97,13 @@ class Spatial_Attention(nn.Module):
     compute spatial attention scores
     '''
 
-    def __init__(self, DEVICE, in_channels, num_of_vertices, num_of_timesteps):
+    def __init__(self, DEVICE, in_channels, nodes, timesteps):
         super(Spatial_Attention, self).__init__()
-        self.W1 = nn.Parameter(torch.FloatTensor(num_of_timesteps).to(DEVICE))
-        self.W2 = nn.Parameter(torch.FloatTensor(in_channels, num_of_timesteps).to(DEVICE))
+        self.W1 = nn.Parameter(torch.FloatTensor(timesteps).to(DEVICE))
+        self.W2 = nn.Parameter(torch.FloatTensor(in_channels, timesteps).to(DEVICE))
         self.W3 = nn.Parameter(torch.FloatTensor(in_channels).to(DEVICE))
-        self.bs = nn.Parameter(torch.FloatTensor(1, num_of_vertices, num_of_vertices).to(DEVICE))
-        self.Vs = nn.Parameter(torch.FloatTensor(num_of_vertices, num_of_vertices).to(DEVICE))
+        self.bs = nn.Parameter(torch.FloatTensor(1, nodes, nodes).to(DEVICE))
+        self.Vs = nn.Parameter(torch.FloatTensor(nodes, nodes).to(DEVICE))
 
     def forward(self, x):
         '''
