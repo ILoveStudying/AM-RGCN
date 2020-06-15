@@ -43,7 +43,7 @@ class datasets():
         return np.array(Sample), np.array(Label), max_data
 
     def PEMS_adjacency_matrix(self, distance_adj_filename, nodes):
-        ''' Get adjacency matrix '''
+        ''' get adjacency matrix '''
         import csv
 
         A = np.zeros((int(nodes), int(nodes)), dtype=np.float32)
