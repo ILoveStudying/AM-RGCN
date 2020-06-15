@@ -1,7 +1,6 @@
 # -*- coding:utf-8 -*-
 import argparse
 
-
 class BaseOptions():
     def __init__(self):
         self.parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
