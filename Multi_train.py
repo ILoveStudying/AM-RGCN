@@ -17,7 +17,7 @@ opt = TrainOptions().parse()
 # Intinial datasets class
 OpenDataset = datasets(opt.dataset)
 
-#
+# Important Parameter
 node_length = 170 if "pems08" in opt.dataset else 307
 predict_length = int(opt.hdwps.split(',')[-2])
 periodic_shift = int(opt.hdwps.split(',')[-1])
