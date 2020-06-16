@@ -13,9 +13,13 @@ class BaseOptions():
         self.parser.add_argument('--adj', type=str, default='./dataset/distance08.csv', help='filename for adjacency matrix')
         self.parser.add_argument('--Multidataset', type=str, default='./dataset/pems08_h2_d1_w1_p12_s1_MultiComponent.npz', help='whether existing Multidataset or Slidedataset, create one if not')
 
-        # 
-        self.parser.add_argument('--process_method', type=str, default='MultiComponent', help='MultiComponent |SlideWindow')
+        '''
+        if '--Multidataset' is not existing, create one based on '--hdwps'. Note that the hour, day, week, prediction, 
+        and shift in '--Multidataset' should be consistent with the ones in '--hdwps'.  
+        eg. 'h2_d1_w1_p12_s1' in '--Multidataset' and '2,1,1,12,1' in '--hdwps'
+        '''
         self.parser.add_argument('--hdwps', type=str, default='2,1,1,12,1', help='hour, day, week, and shift are multiples of prediction length ')
+        self.parser.add_argument('--process_method', type=str, default='MultiComponent', help='MultiComponent |SlideWindow')
 
         # GCN-based model network parameter
         self.parser.add_argument('--gcn1_out_feature', type=int, default=128, help='out_feature of GCN layer1')
