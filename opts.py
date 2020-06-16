@@ -29,7 +29,7 @@ class BaseOptions():
         self.parser.add_argument('--weight_decay', type=float, default=5e-4, help='weight decay')
 
         # hidden_size for lstm and gru
-        self.parser.add_argument('--lstm_hidden', type=int, default=32, help='hidden size of lstm or gru')
+        self.parser.add_argument('--lstm_hidden', type=int, default=64, help='hidden size of lstm or gru')
 
         self.parser.add_argument('--model', type=str, default='DMRGCN', help='DMRGCN |Baseline_LSTM |Baseline_GRU |MCSTGCN |ASTGCN |DM_LSTM_GCN')
 
