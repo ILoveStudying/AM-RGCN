@@ -12,7 +12,7 @@ We choose data on the first 50 days as the training set and valid set, and the r
 We select data on the first 50 days as the training set and valid set, and the remaining 12 days as the test set. 
 
 # Parameter Setting
-The detail setting of our experiment refers our paper.
+The detail setting of our experiment refers to our paper.
 
 
 # Usage
