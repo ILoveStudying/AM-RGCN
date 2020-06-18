@@ -13,7 +13,7 @@ class BaseOptions():
         self.parser.add_argument('--save_path', type=str, default='./checkpoint/PEMS08', help='path for saving model')
         self.parser.add_argument('--adj', type=str, default='./dataset/distance08.csv', help='filename for adjacency matrix')
         self.parser.add_argument('--Multidataset', type=str, default='./dataset/pems08_h2_d1_w1_p12_s1_MultiComponent.npz',
-                                 help='whether existing Multidataset or Slidedataset, create one if not')
+                                 help='whether there exists Multidataset, create one if not.')
 
         '''
         if '--Multidataset' is not existing, create one based on '--hdwps'.
@@ -22,6 +22,10 @@ class BaseOptions():
         '''
         self.parser.add_argument('--hdwps', type=str, default='2,1,1,12,1',
                                  help='hour(h), day(d), week(w), and shift(s) are multiples of prediction(p) ')
+        '''
+        if 'process_method' is MultiComponent, there requires existing Multidataset
+        if model is LSTM or GRU, 'process_method' chooses SlideWindow.
+        '''
         self.parser.add_argument('--process_method', type=str, default='MultiComponent', help='MultiComponent |SlideWindow')
 
         # GCN-based model network parameter
