@@ -16,7 +16,7 @@ class BaseOptions():
                                  help='whether there exists Multidataset, create one if not.')
 
         '''
-        if '--Multidataset' is not existing, create one based on '--hdwps'.
+        if '--Multidataset' is not existing, create one based on '--hdwps'. Else, you only need look at p in '--hdwps'.
         Note that we use the same Multidataset as p=12(1 hour) when predicting p = 6(30min) or 3(15min) in '--hdwps'
         e.g We predict different time slices p all based on pems08_h2_d1_w1_p12_s1_MultiComponent.npz  
         '''
