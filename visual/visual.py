@@ -83,8 +83,8 @@ def plot_rmse_mae(dataset,MC,DMC,Y_S,Y_E,savefig):
 
     #,color='pink',color='teal'
     plt.ylim(Y_S, Y_E)  # 22,26 , 14,18 , 29,33 ,19,23
-    plt.bar(X, MC, width=bar_width, label='Multi-component')
-    plt.bar(bar2, DMC, width=bar_width, label='Dynamic Multi-component')
+    plt.bar(X, MC, width=bar_width,color='pink', label='Multi-component')
+    plt.bar(bar2, DMC, width=bar_width,color='teal', label='Dynamic Multi-component')
     # txt = ["6:00pm", "7:00pm", "6:00pm", "6:00pm", "7:00pm", "5:00pm", "8:00pm", ]
     for i in range(len(MC)):
         plt.text(bar1[i] - 0.14, MC[i] + 0.1, MC[i], weight="bold", fontsize=13)
@@ -95,30 +95,30 @@ def plot_rmse_mae(dataset,MC,DMC,Y_S,Y_E,savefig):
     plt.show()
 
 def p8_rmse():
-    PE8_RMSE_MC = [25.45, 25.04, 23.40]
-    PE8_RMSE_DMC = [24.31, 24.50, 23.02]
+    PE8_RMSE_MC = [25.47, 25.01, 23.64]
+    PE8_RMSE_DMC = [24.36, 24.57, 22.87]
     plot_rmse_mae('PEMSD8',PE8_RMSE_MC,PE8_RMSE_DMC,22,26,'p8_rmse')
 
 def p8_mae():
-    PE8_MAE_MC = [17.08, 16.94, 15.65]
-    PE8_MAE_DMC = [16.00, 16.20, 15.18]
+    PE8_MAE_MC = [17.08, 16.94, 15.98]
+    PE8_MAE_DMC = [16.02, 16.31, 15.03]
     plot_rmse_mae('PEMSD8',PE8_MAE_MC, PE8_MAE_DMC, 14, 18,'p8_mae')
 
 def p4_rmse():
-    PE4_RMSE_MC = [32.56, 32.53, 30.21]
-    PE4_RMSE_DMC = [31.53, 31.60, 30.05]
+    PE4_RMSE_MC = [32.63, 32.26, 30.06]
+    PE4_RMSE_DMC = [31.53, 31.60, 29.79]
     plot_rmse_mae('PEMSD4',PE4_RMSE_MC,PE4_RMSE_DMC,29,34,'p4_rmse')
 
 def p4_mae():
-    PE4_MAE_MC = [21.87, 22.02, 20.11]
-    PE4_MAE_DMC = [20.92, 21.28, 19.93]
+    PE4_MAE_MC = [21.88, 21.98, 19.97]
+    PE4_MAE_DMC = [21.11, 21.17, 19.82]
     plot_rmse_mae('PEMSD4',PE4_MAE_MC,PE4_MAE_DMC,19,23,'p4_mae')
 
 if __name__ == '__main__':
-    day()
-    week()
-    p8_rmse()
-    p8_mae()
+    # day()
+    # week()
+    # p8_rmse()
+    # p8_mae()
     p4_rmse()
     p4_mae()
 
