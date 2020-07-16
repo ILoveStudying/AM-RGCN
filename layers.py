@@ -169,7 +169,7 @@ class Predictor(nn.Module):
         # (T, B, N, convlstm_F) - (pre_T, B, N, convlstm_F)
         conv_feature, h_state = self.time_convlstm(None, hidden_state, self.pre_len)
 
-        # (pre_T, B, N, convlstm_F) - (T, B, N, convlstm_F) - (B, T, N, convlstm_F)
+        # (pre_T, B, N, convlstm_F) - (B, pre_T, N, convlstm_F) - (B, T, N, convlstm_F)
         output = self.upconv(conv_feature.permute(1, 0, 2, 3))
 
         output = self.bn(output.permute(0, 3, 2, 1)).permute(0, 3, 2, 1)  # (B, T, N, convlstm_F)
