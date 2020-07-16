@@ -83,14 +83,14 @@ def plot_rmse_mae(dataset,MC,DMC,Y_S,Y_E,savefig):
 
     #,color='pink',color='teal'
     plt.ylim(Y_S, Y_E)  # 22,26 , 14,18 , 29,33 ,19,23
-    plt.bar(X, MC, width=bar_width,color='pink', label='Multi-component')
-    plt.bar(bar2, DMC, width=bar_width,color='teal', label='Dynamic Multi-component')
+    plt.bar(X, MC, width=bar_width, label='Multi-component')
+    plt.bar(bar2, DMC, width=bar_width, label='Dynamic Multi-component')
     # txt = ["6:00pm", "7:00pm", "6:00pm", "6:00pm", "7:00pm", "5:00pm", "8:00pm", ]
     for i in range(len(MC)):
-        plt.text(bar1[i] - 0.14, MC[i] + 0.1, MC[i], weight="bold", fontsize=13)
-        plt.text(bar2[i] - 0.11, DMC[i] + 0.1, DMC[i], weight="bold", fontsize=13)
+        plt.text(bar1[i] - 0.14, MC[i] + 0.09, MC[i], weight="bold", fontsize=13)
+        plt.text(bar2[i] - 0.11, DMC[i] + 0.09, DMC[i], weight="bold", fontsize=13)
 
-    plt.legend(fontsize=12)
+    plt.legend(fontsize=13)
     plt.savefig(savefig + '.png', dpi=1000)
     plt.show()
 
@@ -117,8 +117,8 @@ def p4_mae():
 if __name__ == '__main__':
     # day()
     # week()
-    # p8_rmse()
-    # p8_mae()
-    p4_rmse()
-    p4_mae()
+    p8_rmse()
+    p8_mae()
+    # p4_rmse()
+    # p4_mae()
 
