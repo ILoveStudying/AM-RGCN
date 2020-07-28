@@ -138,14 +138,14 @@ class Encoder(nn.Module):
         Encoder for spatial-temporal correlations
         :param x: (B, N, in_F, T)
         :param adj: (N, N)
-        :return: (T, B, N, convlstm_F)
+        :return: (B, N, convlstm_F)
         '''
 
         spatial_gcn = self.spatial_gcn(x, adj) # (B, N, in_F, T) - (B, N, gcn_F, T)
 
         spatial_gcn = F.dropout(spatial_gcn, self.dropout, training=self.training)
 
-        # (B, N, gcn_F, T) - (T, B, N, gcn_F) - (T, B, N, convlstm1_F)
+        # (B, N, gcn_F, T) - (T, B, N, gcn_F) - (B, N, convlstm1_F)
         output, h_state = self.time_convlstm(spatial_gcn.permute(3, 0, 1, 2), None, x.shape[-1])
 
         return h_state
@@ -162,11 +162,11 @@ class Predictor(nn.Module):
     def forward(self, hidden_state):
         '''
         Predictor for multi-step prediction
-        :param hidden_state: (T, B, N, convlstm_F)
+        :param hidden_state: (B, N, convlstm_F)
         :return: (B, T, N, convlstm_F)
         '''
 
-        # (T, B, N, convlstm_F) - (pre_T, B, N, convlstm_F)
+        # (B, N, convlstm_F) - (pre_T, B, N, convlstm_F)
         conv_feature, h_state = self.time_convlstm(None, hidden_state, self.pre_len)
 
         # (pre_T, B, N, convlstm_F) - (B, pre_T, N, convlstm_F) - (B, T, N, convlstm_F)
