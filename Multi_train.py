@@ -162,7 +162,7 @@ def train(inputs, labels, adj, is_training):
         loss_train.backward()
         optimizer.step()
 
-        return loss_train
+        return loss_train.item()
 
     else:
         # Validation
@@ -244,7 +244,7 @@ if __name__ == "__main__":
 
         end_time = time.time()
         print("=>{}".format(epoch),
-              "|Training:{:5.2f}".format(ave_loss.data.cpu().numpy()),
+              "|Training:{:5.2f}".format(ave_loss),
               "|Test:{:5.2f}".format(mse_loss.data.cpu().numpy()),
               "|MAE:{:.2f}".format(mae_loss.data.cpu().numpy()),
               "|RMSE:{:.2f}".format(rmse_loss.data.cpu().numpy()),
