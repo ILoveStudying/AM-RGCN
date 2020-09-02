@@ -15,7 +15,7 @@ We select data on the first 50 days as the training set and valid set, and the r
 The detail setting of our experiment refers to our paper. 
 
 
-CUDA memory-usage: >7GB for PEMSD8; >12GB for PEMSD4. You can reduce the $batch_size$ if necessary.
+CUDA memory-usage: >7GB for PEMSD8; >12GB for PEMSD4. You can reduce the batch_size if necessary.
 
 
 # Usage
