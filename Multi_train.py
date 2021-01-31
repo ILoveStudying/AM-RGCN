@@ -6,7 +6,7 @@ import torch.optim as optim
 
 from torch.autograd import Variable
 from utils import *
-from models import MCSTGCN, ASTGCN, DM_LSTM_GCN, DMRGCN
+from models import MCSTGCN, ASTGCN, AM_LSTM_GCN, AMRGCN
 from opts import TrainOptions
 from torch.utils.data import DataLoader
 from PreprocessData import datasets
@@ -66,8 +66,8 @@ if (opt.model == 'MCSTGCN'):
         pre_len=predict_length,
         time_strides=2,
     )
-elif (opt.model == 'DMRGCN'):
-    print("| Constructing DMRGCN model...")
+elif (opt.model == 'AMRGCN'):
+    print("| Constructing AMRGCN model...")
     model = DMRGCN(
         node_length=node_length,
         time_step=features.shape[2],
@@ -92,8 +92,8 @@ elif (opt.model == 'ASTGCN'):
         time_strides=2,
         DEVICE=device
     )
-elif (opt.model == 'DM_LSTM_GCN'):
-    print("| Constructing DM_LSTM_GCN model...")
+elif (opt.model == 'AM_LSTM_GCN'):
+    print("| Constructing AM_LSTM_GCN model...")
     model = DM_LSTM_GCN(
         time_step=features.shape[2],
         gcn1_in_feature=features.shape[-1],
