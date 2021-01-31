@@ -32,14 +32,14 @@ class BaseOptions():
         self.parser.add_argument('--gcn1_out_feature', type=int, default=128, help='out_feature of GCN layer1')
         self.parser.add_argument('--gcn2_out_feature', type=int, default=64, help='out_feature of GCN layer2')
         self.parser.add_argument('--nb_time_filter', type=int, default=64, help='out_feature of CNN')
-        self.parser.add_argument('--dropout', type=float, default=0.8, help='only for DM-RGCN')
+        self.parser.add_argument('--dropout', type=float, default=0.8, help='only for AM-RGCN')
         self.parser.add_argument('--weight_decay', type=float, default=5e-4, help='weight decay')
 
         # hidden_size for lstm and gru
         self.parser.add_argument('--lstm_hidden', type=int, default=64, help='hidden size of lstm or gru')
 
-        self.parser.add_argument('--model', type=str, default='DMRGCN',
-                                 help='DMRGCN |Baseline_LSTM |Baseline_GRU |MCSTGCN |ASTGCN |DM_LSTM_GCN')
+        self.parser.add_argument('--model', type=str, default='AMRGCN',
+                                 help='AMRGCN |Baseline_LSTM |Baseline_GRU |MCSTGCN |ASTGCN |AM_LSTM_GCN')
 
     def parse(self):
         if not self.initialized:
