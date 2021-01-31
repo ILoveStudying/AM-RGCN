@@ -53,11 +53,11 @@ class MCSTGCN(nn.Module):
         return pred
 
 
-class DMRGCN(nn.Module):
+class AMRGCN(nn.Module):
     def __init__(self, node_length, time_step, gcn1_in_feature, gcn1_out_feature, gcn2_out_feature, nb_time_filter,
                  pre_len, dropout, device):
         '''
-        Parameter of Dynamic Multi-component Recurrent gcn.
+        Parameter of Augmented Multi-component Recurrent gcn.
         :param node_length: int, num of nodes
         :param time_step: int, length of input sequence
         :param gcn1_in_feature: int, in_feature for GCN layer 1
@@ -266,7 +266,7 @@ class Baseline_GRU(nn.Module):
         return x
 
 
-class DM_LSTM_GCN(nn.Module):
+class AM_LSTM_GCN(nn.Module):
     def __init__(self, time_step, gcn1_in_feature, gcn1_out_feature, gcn2_out_feature, nb_time_filter, pre_len):
         '''
         Comparison Model of replacing ConvLSTM-1D with LSTM
