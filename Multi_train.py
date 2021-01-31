@@ -68,7 +68,7 @@ if (opt.model == 'MCSTGCN'):
     )
 elif (opt.model == 'AMRGCN'):
     print("| Constructing AMRGCN model...")
-    model = DMRGCN(
+    model = AMRGCN(
         node_length=node_length,
         time_step=features.shape[2],
         gcn1_in_feature=features.shape[-1],
