@@ -94,7 +94,7 @@ elif (opt.model == 'ASTGCN'):
     )
 elif (opt.model == 'AM_LSTM_GCN'):
     print("| Constructing AM_LSTM_GCN model...")
-    model = DM_LSTM_GCN(
+    model = AM_LSTM_GCN(
         time_step=features.shape[2],
         gcn1_in_feature=features.shape[-1],
         gcn1_out_feature=opt.gcn1_out_feature,
