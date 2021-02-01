@@ -69,7 +69,7 @@ class AMRGCN(nn.Module):
         :param device: cuda:0 or cpu
         '''
 
-        super(DMRGCN, self).__init__()
+        super(AMRGCN, self).__init__()
         self.autoencoder = AutoEncoder(gcn1_in_feature, gcn1_out_feature, gcn2_out_feature, dropout, node_length,
                                        nb_time_filter, time_step, pre_len, device)
         self.residual_conv = nn.Conv2d(gcn1_in_feature, nb_time_filter, kernel_size=(1, 1), stride=(1, 1))
@@ -278,7 +278,7 @@ class AM_LSTM_GCN(nn.Module):
         :param pre_len: int, length of prediction
         '''
 
-        super(DM_LSTM_GCN, self).__init__()
+        super(AM_LSTM_GCN, self).__init__()
         self.spatial_gcn = GCN_layer(gcn1_in_feature, gcn1_out_feature, gcn2_out_feature)
         self.gru = nn.LSTM(gcn2_out_feature, nb_time_filter, batch_first=True)
         self.residual_conv = nn.Conv2d(gcn1_in_feature, gcn2_out_feature, kernel_size=(1, 1),
