@@ -57,7 +57,7 @@ class AMRGCN(nn.Module):
     def __init__(self, node_length, time_step, gcn1_in_feature, gcn1_out_feature, gcn2_out_feature, nb_time_filter,
                  pre_len, dropout, device):
         '''
-        Parameter of Augmented Multi-component Recurrent gcn.
+        Parameter of Augmented Multi-component Recurrent Gcn.
         :param node_length: int, num of nodes
         :param time_step: int, length of input sequence
         :param gcn1_in_feature: int, in_feature for GCN layer 1
