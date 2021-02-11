@@ -127,11 +127,13 @@ class Spatial_Attention(nn.Module):
 
 
 class Encoder(nn.Module):
-    def __init__(self, gcn1_in_feature, gcn1_out_feature, gcn2_out_feature, dropout, node_length, nb_time_filter, device):
+    def __init__(self, gcn1_in_feature, gcn1_out_feature, gcn2_out_feature, dropout, node_length, nb_time_filter,
+                 device):
         super(Encoder, self).__init__()
         self.spatial_gcn = GCN_layer(gcn1_in_feature, gcn1_out_feature, gcn2_out_feature)
         self.dropout = dropout
-        self.time_convlstm = ConvLSTM(node_length, node_length, nb_time_filter, kernel_size=3, stride=1, padding=1, DEVICE=device)
+        self.time_convlstm = ConvLSTM(node_length, node_length, nb_time_filter, kernel_size=3, stride=1, padding=1,
+                                      DEVICE=device)
 
     def forward(self, x, adj):
         '''
@@ -141,7 +143,7 @@ class Encoder(nn.Module):
         :return: (B, N, convlstm_F)
         '''
 
-        spatial_gcn = self.spatial_gcn(x, adj) # (B, N, in_F, T) - (B, N, gcn_F, T)
+        spatial_gcn = self.spatial_gcn(x, adj)  # (B, N, in_F, T) - (B, N, gcn_F, T)
 
         spatial_gcn = F.dropout(spatial_gcn, self.dropout, training=self.training)
 
@@ -154,7 +156,8 @@ class Encoder(nn.Module):
 class Predictor(nn.Module):
     def __init__(self, time_step, node_length, nb_time_filter, pre_len, device):
         super(Predictor, self).__init__()
-        self.time_convlstm = ConvLSTM(node_length, node_length, nb_time_filter, kernel_size=3, stride=1, padding=1, DEVICE=device)
+        self.time_convlstm = ConvLSTM(node_length, node_length, nb_time_filter, kernel_size=3, stride=1, padding=1,
+                                      DEVICE=device)
         self.upconv = nn.Conv2d(pre_len, time_step, kernel_size=(1, 1), stride=(1, 1))
         self.bn = nn.BatchNorm2d(nb_time_filter)
         self.pre_len = pre_len
@@ -181,7 +184,8 @@ class AutoEncoder(nn.Module):
     def __init__(self, gcn1_in_feature, gcn1_out_feature, gcn2_out_feature, dropout, node_length, nb_time_filter,
                  time_step, pre_len, device):
         super(AutoEncoder, self).__init__()
-        self.encoder_layer = Encoder(gcn1_in_feature, gcn1_out_feature, gcn2_out_feature, dropout, node_length, nb_time_filter, device)
+        self.encoder_layer = Encoder(gcn1_in_feature, gcn1_out_feature, gcn2_out_feature, dropout, node_length,
+                                     nb_time_filter, device)
         self.decoder_layer = Predictor(time_step, node_length, nb_time_filter, pre_len, device)
 
     def forward(self, x, adj):
@@ -193,7 +197,7 @@ class AutoEncoder(nn.Module):
         '''
 
         encoder = self.encoder_layer(x, adj)  # (B, N, in_F, T) - (T, B, N, convlstm_F)
-        decoder = self.decoder_layer(encoder) # (T, B, N, convlstm_F) - (B, T, N, convlstm_F)
+        decoder = self.decoder_layer(encoder)  # (T, B, N, convlstm_F) - (B, T, N, convlstm_F)
 
         return decoder
 
@@ -213,7 +217,6 @@ class ConvLSTM(nn.Module):
         self.Wco = nn.Parameter(torch.zeros(1, num_filter, self._state)).to(DEVICE)
         self._input_channel = input_channel
         self._num_filter = num_filter
-
 
     def forward(self, inputs=None, states=None, seq_len=None):
         # inputs and states should not be all none

@@ -12,7 +12,7 @@ class BaseOptions():
         self.parser.add_argument('--dataset', type=str, default='./dataset/pems08.npz', help='path for dataset')
         self.parser.add_argument('--save_path', type=str, default='./checkpoint/PEMS08', help='path for saving model')
         self.parser.add_argument('--adj', type=str, default='./dataset/distance08.csv', help='filename for adjacency matrix')
-        self.parser.add_argument('--Multidataset', type=str, default='./dataset/pems08_h2_d1_w1_p12_s1_MultiComponent.npz',
+        self.parser.add_argument('--Multidataset', type=str, default='./dataset/pems08_h2_d1_w1_p12_s2_MultiComponent.npz',
                                  help='whether there exists Multidataset, create one if not.')
 
         '''
@@ -20,7 +20,7 @@ class BaseOptions():
         Note that we use the same Multidataset as p=12(1 hour) when predicting p = 6(30min) or 3(15min) in '--hdwps'
         e.g We predict different time slices p all based on pems08_h2_d1_w1_p12_s1_MultiComponent.npz  
         '''
-        self.parser.add_argument('--hdwps', type=str, default='2,1,1,12,1',
+        self.parser.add_argument('--hdwps', type=str, default='2,1,1,12,2',
                                  help='hour(h), day(d), week(w), and shift(s) are multiples of prediction(p) ')
         '''
         if 'process_method' is MultiComponent, there requires existing Multidataset
@@ -58,7 +58,8 @@ class TrainOptions(BaseOptions):
     def initialize(self):
         BaseOptions.initialize(self)
         self.parser.add_argument('--lr', type=float, default=1e-3, help='initial learning rate')
-        self.parser.add_argument('--optimizer', type=str, default='adam', help='[sgd | adam]')
+        self.parser.add_argument('--train_thread', type=int, default=50, help='a trick for training')
+        self.parser.add_argument('--optimizer', type=str, default='adam', help='[rmsprop | adam]')
         self.parser.add_argument('--epoch', type=int, default=150, help='number of training epochs')
         self.isTrain = True
 

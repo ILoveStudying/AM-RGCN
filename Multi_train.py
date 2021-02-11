@@ -22,6 +22,7 @@ node_length = 170 if "pems08" in opt.dataset else 307
 predict_length = int(opt.hdwps.split(',')[-2])
 periodic_shift = int(opt.hdwps.split(',')[-1])
 process_method = opt.process_method
+train_thread = opt.train_thread
 
 # Get Dynamic Multi-component sequence
 adj, features, labels, test_features, test_labels, max_data = load_data(OpenDataset, opt.dataset, process_method,
@@ -116,8 +117,8 @@ if use_gpu:
     model.cuda()
 
 # Define the optimizer
-if (opt.optimizer == 'sgd'):
-    optimizer = optim.SGD(
+if (opt.optimizer == 'rmsprop'):
+    optimizer = optim.RMSprop(
         model.parameters(),
         lr=opt.lr,
         weight_decay=opt.weight_decay,
@@ -146,7 +147,7 @@ if not os.path.isdir(save_point):
     os.mkdir(save_point)
 
 
-def train(inputs, labels, adj, is_training):
+def train(inputs, labels, adj, epoch, is_training):
     # Train
     if is_training:
         model.train()
@@ -157,7 +158,10 @@ def train(inputs, labels, adj, is_training):
         criterion = torch.nn.MSELoss()
 
         # renormalization
-        loss_train = criterion(output * max_data, labels * max_data)
+        if epoch >= train_thread:
+            loss_train = criterion(output * max_data, labels * max_data)
+        else:
+            loss_train = criterion(output, labels)
 
         loss_train.backward()
         optimizer.step()
@@ -203,10 +207,10 @@ if __name__ == "__main__":
                 inputs, labels, adj = list(map(lambda x: Variable(x), [inputs, labels, adj]))
 
             # batch loss
-            total_loss += train(inputs, labels, adj, True)
+            total_loss += train(inputs, labels, adj, epoch, True)
 
             # average loss
-            ave_loss = total_loss / (index + 1)
+            ave_loss = total_loss * max_data / (index + 1) if epoch < train_thread else total_loss / (index + 1)
 
         for index, data in enumerate(test_loader):
             test_x, test_y = data
@@ -215,7 +219,7 @@ if __name__ == "__main__":
                 test_x, test_y, adj = list(map(lambda x: x.cuda(), [test_x, test_y, adj]))
 
             # batch loss
-            MSE, RMSE, MAE = train(test_x, test_y, adj, False)
+            MSE, RMSE, MAE = train(test_x, test_y, adj, epoch, False)
             MSE_loss += MSE
             MAE_loss += MAE
             RMSE_loss += RMSE
