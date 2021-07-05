@@ -43,7 +43,7 @@ if use_gpu:
 # get test dataset
 test_Dataset = PEMS_dataset(features, labels)
 test_loader = DataLoader(dataset=test_Dataset,
-                         batch_size=32,
+                         batch_size=opt.batch_size,
                          shuffle=False)
 
 

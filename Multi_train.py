@@ -12,6 +12,8 @@ from torch.utils.data import DataLoader
 from PreprocessData import datasets
 
 # Parameter option
+set_seed(6666)
+
 opt = TrainOptions().parse()
 
 # Intinial datasets class
@@ -35,13 +37,13 @@ print(adj.size(), features.size(), labels.size(), test_features.size(), test_lab
 # get training dataset
 train_Dataset = PEMS_dataset(features, labels)
 train_loader = DataLoader(dataset=train_Dataset,
-                          batch_size=32,
+                          batch_size=opt.batch_size,
                           shuffle=True)
 
 # get validation dataset
 test_Dataset = PEMS_dataset(test_features, test_labels)
 test_loader = DataLoader(dataset=test_Dataset,
-                         batch_size=32,
+                         batch_size=opt.batch_size,
                          shuffle=False)
 
 use_gpu = torch.cuda.is_available()
@@ -181,6 +183,15 @@ def train(inputs, labels, adj, epoch, is_training):
 
             return MSE, RMSE, MAE
 
+def set_seed(seed=0):
+    os.environ['PYTHONHASHSEED'] = str(seed)
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
 
 # Main code for training
 if __name__ == "__main__":
