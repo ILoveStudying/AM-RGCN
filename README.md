@@ -28,9 +28,9 @@ You need edit the options in opt.py:
  - Multidataset: str,  whether there exists Multidataset, create one automaticly if not
  - process_method: str, *MultiComponent* or *SlideWindow*
  - hdwps: str, hour(h), day(d), week(w), and shift(s) are multiples of prediction(p) length
- - model:  **AMRGCN, Baseline_LSTM, Baseline_GRU, MCSTGCN, ASTGCN, DM_LSTM_GCN**
+ - model:  **AM-RGCN, Baseline_LSTM, Baseline_GRU, MCSTGCN, ASTGCN, DM_LSTM_GCN**. We provide the realizations of six models. More details of these models can be found in the paper.
  
- if model is in (**AMRGCN, MCSTGCN, ASTGCN, DM_LSTM_GCN**)
+ if model is in (**AM-RGCN, MCSTGCN, ASTGCN, DM_LSTM_GCN**)
  
 ```
  python Multi_train.py
