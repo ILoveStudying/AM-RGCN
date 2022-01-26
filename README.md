@@ -1,5 +1,5 @@
 # AM-RGCN
-Augmented Multi-component Recurrent Graph Convolustional Network for traffic flow forecasting(DM-RGCN)
+Augmented Multi-component Recurrent Graph Convolustional Network for traffic flow forecasting(AM-RGCN)
 
 # Dataset
 The public traffic datasets, PEMSD4 and PEMSD8, are the real highway traffic datasets in California released by Guo ([ASTGCN](https://github.com/wanhuaiyu/ASTGCN/blob/master/papers/2019%20AAAI_Attention%20Based%20Spatial-Temporal%20Graph%20Convolutional%20Networks%20for%20Traffic%20Flow%20Forecasting.pdf)). 
@@ -11,6 +11,8 @@ We choose data on the first 50 days as the training set and valid set, and the r
 - PeMSD8 contains two months of statistics on traffic flow, ranging from July 1st 2016 to Aug 31st 2016, including 170 sensors on the highways of San Bernardino. 
 We select data on the first 50 days as the training set and valid set, and the remaining 12 days as the test set. 
 
+- visual/showdata.npy. Didi’s real-world traffic flow data ranging from 31 October 2019 to 30 November 2019 in Beijing (a small district which has been masked).
+
 # Parameter Setting
 The detail setting of our experiment refers to our paper. 
 
@@ -19,16 +21,16 @@ CUDA memory-usage: >7GB for PEMSD8; >12GB for PEMSD4. You can reduce the batch_s
 
 
 # Usage
-Edit options in opt.py
+You need edit the options in opt.py:
  - dataset: str, choose *pems04* or *pems08*
  - save_path: str, checkpoint path for model
- - adj: str, adjacency matrix, *distance08.csv* or *distance04.csv*
- - Multidataset: str,  whether existing Multidataset or Slidedataset, create one if not
+ - adj: str, the path of adjacency matrix, *distance08.csv* or *distance04.csv*
+ - Multidataset: str,  whether there exists Multidataset, create one automaticly if not
  - process_method: str, *MultiComponent* or *SlideWindow*
  - hdwps: str, hour(h), day(d), week(w), and shift(s) are multiples of prediction(p) length
- - model:  **DMRGCN, Baseline_LSTM, Baseline_GRU, MCSTGCN, ASTGCN, DM_LSTM_GCN**
+ - model:  **AMRGCN, Baseline_LSTM, Baseline_GRU, MCSTGCN, ASTGCN, DM_LSTM_GCN**
  
- if model is in (**DMRGCN, MCSTGCN, ASTGCN, DM_LSTM_GCN**)
+ if model is in (**AMRGCN, MCSTGCN, ASTGCN, DM_LSTM_GCN**)
  
 ```
  python Multi_train.py
@@ -36,7 +38,7 @@ Edit options in opt.py
  python Multi_test.py
 ```
 
- if model is in (**Baseline_LSTM, Baseline_GRU**), the process method is *SlideWindow*
+ if model is in (**Baseline_LSTM, Baseline_GRU**) the process method is *SlideWindow*
  ```
  python lstm_gru_train.py
  
