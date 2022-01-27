@@ -1,6 +1,7 @@
 # AM-RGCN
 Augmented Multi-component Recurrent Graph Convolustional Network for traffic flow forecasting([AM-RGCN](https://www.mdpi.com/2220-9964/11/2/88))
 
+
 # Dataset
 The public traffic datasets, PEMSD4 and PEMSD8, are the real highway traffic datasets in California released by Guo ([ASTGCN](https://github.com/wanhuaiyu/ASTGCN/blob/master/papers/2019%20AAAI_Attention%20Based%20Spatial-Temporal%20Graph%20Convolutional%20Networks%20for%20Traffic%20Flow%20Forecasting.pdf)). 
 The observations of the sensors are aggregated into 5-minute windows, including three dimensions of time-stamped total traffic flow, average speed, and average occupancy. 
@@ -46,5 +47,19 @@ You need edit the options in opt.py:
  ```
  
  # Citation
+> Zhang, C.; Zhou, H.-Y.; Qiu, Q.; Jian, Z.; Zhu, D.; Cheng, C.; He, L.; Liu, G.; Wen, X.; Hu, R. Augmented Multi-Component Recurrent Graph Convolutional Network for Traffic Flow Forecasting. ISPRS Int. J. Geo-Inf. 2022, 11, 88. https://doi.org/10.3390/ijgi11020088
 
-[ijgi-v11-i02_20220127.txt](https://github.com/ILoveStudying/AM-RGCN/files/7949444/ijgi-v11-i02_20220127.txt)
+ ```
+ @Article{ijgi11020088,
+AUTHOR = {Zhang, Chi and Zhou, Hong-Yu and Qiu, Qiang and Jian, Zhichun and Zhu, Daoye and Cheng, Chengqi and He, Liesong and Liu, Guoping and Wen, Xiang and Hu, Runbo},
+TITLE = {Augmented Multi-Component Recurrent Graph Convolutional Network for Traffic Flow Forecasting},
+JOURNAL = {ISPRS International Journal of Geo-Information},
+VOLUME = {11},
+YEAR = {2022},
+NUMBER = {2},
+ARTICLE-NUMBER = {88},
+URL = {https://www.mdpi.com/2220-9964/11/2/88},
+ISSN = {2220-9964},
+DOI = {10.3390/ijgi11020088}
+}
+ ```
