@@ -1,5 +1,5 @@
 # AM-RGCN
-Augmented Multi-component Recurrent Graph Convolustional Network for traffic flow forecasting(AM-RGCN)
+Augmented Multi-component Recurrent Graph Convolustional Network for traffic flow forecasting([AM-RGCN])(https://www.mdpi.com/2220-9964/11/2/88)
 
 # Dataset
 The public traffic datasets, PEMSD4 and PEMSD8, are the real highway traffic datasets in California released by Guo ([ASTGCN](https://github.com/wanhuaiyu/ASTGCN/blob/master/papers/2019%20AAAI_Attention%20Based%20Spatial-Temporal%20Graph%20Convolutional%20Networks%20for%20Traffic%20Flow%20Forecasting.pdf)). 
@@ -45,3 +45,17 @@ You need edit the options in opt.py:
  python lstm_gru_test.py
  ```
  
+ # Citation
+ @Article{ijgi11020088,
+AUTHOR = {Zhang, Chi and Zhou, Hong-Yu and Qiu, Qiang and Jian, Zhichun and Zhu, Daoye and Cheng, Chengqi and He, Liesong and Liu, Guoping and Wen, Xiang and Hu, Runbo},
+TITLE = {Augmented Multi-Component Recurrent Graph Convolutional Network for Traffic Flow Forecasting},
+JOURNAL = {ISPRS International Journal of Geo-Information},
+VOLUME = {11},
+YEAR = {2022},
+NUMBER = {2},
+ARTICLE-NUMBER = {88},
+URL = {https://www.mdpi.com/2220-9964/11/2/88},
+ISSN = {2220-9964},
+ABSTRACT = {Due to the periodic and dynamic changes of traffic flow and the spatial&ndash;temporal coupling interaction of complex road networks, traffic flow forecasting is highly challenging and rarely yields satisfactory prediction results. In this paper, we propose a novel methodology named the Augmented Multi-component Recurrent Graph Convolutional Network (AM-RGCN) for traffic flow forecasting by addressing the problems above. We first introduce the augmented multi-component module to the traffic forecasting model to tackle the problem of periodic temporal shift emerging in traffic series. Then, we propose an encoder&ndash;decoder architecture for spatial&ndash;temporal prediction. Specifically, we propose the Temporal Correlation Learner (TCL) which incorporates one-dimensional convolution into LSTM to utilize the intrinsic temporal characteristics of traffic flow. Moreover, we combine TCL with the graph convolutional network to handle the spatial&ndash;temporal coupling interaction of the road network. Similarly, the decoder consists of TCL and convolutional neural networks to obtain high-dimensional representations from multi-step predictions based on spatial&ndash;temporal sequences. Extensive experiments on two real-world road traffic datasets, PEMSD4 and PEMSD8, demonstrate that our AM-RGCN achieves the best results.},
+DOI = {10.3390/ijgi11020088}
+}
