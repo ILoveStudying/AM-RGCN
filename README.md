@@ -1,4 +1,4 @@
-# Augmented Multi-component Recurrent Graph Convolustional Network for traffic flow forecasting ([AM-RGCN](https://www.mdpi.com/2220-9964/11/2/88))
+# Augmented Multi-component Recurrent Graph Convolustional Network for Traffic Flow Forecasting ([AM-RGCN](https://www.mdpi.com/2220-9964/11/2/88))
 
 # Dataset
 The public traffic datasets, PEMSD4 and PEMSD8, are the real highway traffic datasets in California released by Guo ([ASTGCN](https://github.com/wanhuaiyu/ASTGCN/blob/master/papers/2019%20AAAI_Attention%20Based%20Spatial-Temporal%20Graph%20Convolutional%20Networks%20for%20Traffic%20Flow%20Forecasting.pdf)). 
